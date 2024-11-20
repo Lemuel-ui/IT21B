@@ -1,0 +1,10 @@
+{
+    "monthlySales": {
+        "labels": ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
+        "values": [120, 150, 170, 140, 180, 200, 190, 210, 205, 230, 240, 250]
+    },
+    "categorySales": {
+        "labels": ["Lee", "Nike", "0xygen", "chanel", "dior"],
+        "values": [20, 45, 20, 50, 60]
+    }
+}
