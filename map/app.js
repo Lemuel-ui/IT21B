@@ -78,6 +78,7 @@ class LeafletMap {
     }
 }
 
-// Usage
+
 const myMap = new LeafletMap('map', [8.2459, 124.9885], 13);
 myMap.loadMarkersFromJson('app.json', 'F');  
+
