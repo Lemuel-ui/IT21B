@@ -3,11 +3,11 @@ class TemperatureConverter {
         if (unit === 'F') {
             return (temperature * 9 / 5) + 32; 
         }
-        return temperature; // Default to Celsius
+        return temperature;
     }
 }
 
-// Class for Marker
+
 class Marker {
     constructor(lat, lng, message, temperature, unit) {
         this.lat = lat;
@@ -17,7 +17,7 @@ class Marker {
         this.unit = unit;
     }
 
-    // Create the marker and bind the popup
+
     addToMap(map) {
         const tempInPreferredUnit = TemperatureConverter.convert(this.temperature, this.unit);
         const popupMessage = `${this.message}<br>Temperature: ${tempInPreferredUnit}°${this.unit}`;
@@ -27,21 +27,19 @@ class Marker {
     }
 }
 
-// Class to Manage a Collection of Markers
+
 class MarkerManager {
     constructor(map) {
         this.map = map;
         this.markers = [];
     }
 
-    // Add a marker to the map and store it in the markers array
     addMarker(lat, lng, message, temperature, unit = 'C') {
         const marker = new Marker(lat, lng, message, temperature, unit);
         marker.addToMap(this.map);
         this.markers.push(marker);
     }
 
-    // Load markers from a JSON source
     loadMarkersFromJson(url, unit = 'C') {
         fetch(url)
             .then(response => response.json())
@@ -60,12 +58,11 @@ class MarkerManager {
     }
 }
 
-// Class for the Leaflet Map
 class LeafletMap {
     constructor(containerId, center, zoom) {
         this.map = L.map(containerId).setView(center, zoom);
         this.initTileLayer();
-        this.markerManager = new MarkerManager(this.map); // Using the MarkerManager to handle markers
+        this.markerManager = new MarkerManager(this.map); 
     }
 
     initTileLayer() {
@@ -75,7 +72,7 @@ class LeafletMap {
         }).addTo(this.map);
     }
 
-    // Method to load markers from a JSON file
+
     loadMarkersFromJson(url, unit = 'C') {
         this.markerManager.loadMarkersFromJson(url, unit);
     }
@@ -83,4 +80,4 @@ class LeafletMap {
 
 // Usage
 const myMap = new LeafletMap('map', [8.2459, 124.9885], 13);
-myMap.loadMarkersFromJson('app.json', 'F');  // Load markers with temperature in Fahrenheit
+myMap.loadMarkersFromJson('app.json', 'F');  
